@@ -6,7 +6,7 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:37:44 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/11 18:02:24 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/12 10:59:30 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,17 @@ void	free_2d(char **str)
 		i++;
 	}
 	free(str);
+}
+
+void	free_map(int **map, int rows)
+{
+	int	i;
+
+	i = 0;
+	while (i < rows)
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
 }

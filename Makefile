@@ -52,6 +52,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 # Clean rule
 clean:
 	rm -f $(OBJS)
+	rm -rf $(OBJ_DIR)
 	make -C $(LIB_DIR) clean
 	clear
 

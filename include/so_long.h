@@ -6,7 +6,7 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:35:55 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/11 18:01:40 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/12 16:30:36 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,43 +26,60 @@ typedef struct s_struct
 	int		width;
 	char	**map;
 
+	int		moves;
+
 	void	*mlx;
 	void	*wind;
-	size_t	map_lines;
-	int		col_num;
-	int		moves;
-	void	*img_brk;
-	void	*img_up;
-	void	*img_dow;
-	void	*img_lef;
-	void	*img_rig;
-	void	*img_emp;
-	void	*img_dc;
-	void	*img_do;
-	void	*img_col;
+
+	void	*wal;
+	void	*up;
+	void	*dow;
+	void	*lef;
+	void	*rig;
+	void	*flr;
+	void	*dc;
+	void	*dro;
+	void	*col;
 }	t_struct;
+
+typedef struct s_point
+{
+	int	x;
+	int	y;
+}	t_point;
 
 //main
 int close_window(void *param);
 int key_press(int keycode, void *param);
 
 // parsing map
-t_struct	*map_parsing(char *files);
+t_struct	*map_parsing(char *files, t_struct *map);
 char		**parsing(char **split, char *files);
 void		insert_2d(char **split, int width, int row, char **result);
 int			find_row(char **buffer);
 int			find_width(char **buffer);
-void		free_map(int **map, int rows);
-void		check_map_shape(char **map, size_t lines_num);
-void		check_valid_map(char **buffer);
+void		check_map_shape(int width, int row);
+void		check_valid_element(char **buffer);
+void		check_valid_map_name(char *str);
+void		check_map_wall(t_struct *map, int width, int row);
+void		mark_elements(t_struct *map);
+void		mark_player(t_struct *map, t_point player);
+void		flood_fill(char **map, t_point begin, int col);
+void		fill(char **tab, t_point cur, int *c, int *e);
+
+
 
 //utils
 void		error_message(char *str);
 void		free_2d(char **str);
 int			game_over(t_struct *sl);
+void		free_map(int **map, int rows);
 
-//temp
-void		print_map(t_struct *map_struct);
+
+//mlx start
+void	load_images(t_struct *map);
+void	show_map(t_struct *map, int keycode);
+
 
 //movement
 void		handle_move(t_struct *sl, t_struct *p, int keycode);

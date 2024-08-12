@@ -6,23 +6,26 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:41:26 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/11 18:02:50 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/12 12:23:44 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void	free_map(int **map, int rows)
+t_struct	*map_parsing(char *files, t_struct *map)
 {
-	int	i;
+	char		**split;
 
-	i = 0;
-	while (i < rows)
+	split = parsing(split, files);
+	map->row = find_row(split);
+	map->width = find_width(split);
+	insert_2d(split, map->width, map->row, map->map);
+	if (!map->map)
 	{
-		free(map[i]);
-		i++;
+		free_map(map->map, map->row);
+		error_message("Error: Map is empty");
 	}
-	free(map);
+	return (map);
 }
 
 int	find_row(char **buffer)
@@ -45,36 +48,18 @@ int	find_width(char **buffer)
 	return (i);
 }
 
-t_struct	*map_parsing(char *files)
-{
-	char		**split;
-	t_struct	*map;
-
-	split = parsing(split, files);
-	map = malloc(sizeof(t_struct));
-	map->row = find_row(split);
-	map->width = find_width(split);
-	insert_2d(split, map->width, map->row, map->map);
-	if (!map->map)
-	{
-		free_map(map->map, map->row);
-		error_message("Error: Map is empty");
-	}
-	return (map);
-}
-
 void	insert_2d(char **split, int width, int row, char **result)
 {
 	int		i;
 	int		j;
 
-	result = malloc(sizeof(char *) * row);
+	result = (char **)malloc(sizeof(char *) * row);
 	if (!result)
 		return NULL;
 	i = 0;
 	while (i < row)
 	{
-		result[i] = malloc(sizeof(char) * (width + 1));
+		result[i] = (char *)malloc(sizeof(char) * (width + 1));
 		if (!result[i])
 		{
 			free_2d(result);
@@ -91,6 +76,7 @@ void	insert_2d(char **split, int width, int row, char **result)
 	}
 	return (result);
 }
+
 char	**parsing(char **split, char *files)
 {
 	int fd;

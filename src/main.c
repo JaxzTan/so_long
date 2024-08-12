@@ -6,11 +6,38 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 15:27:02 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/11 18:03:05 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/12 16:30:25 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+
+int main(int ac, char **av)
+{
+	char		*files;
+	t_struct	*map;
+	t_point		player;
+
+	if (ac != 2)
+		error_message("invalid input! please try again...");
+	map = malloc(sizeof(t_struct));
+	files = av[1];
+	check_valid_map_name(files);
+	map = map_parsing(files, map);
+	check_map_shape(map->width, map->row);
+	check_map_wall(map, map->width, map->row);
+	check_valid_element(map->map);
+	mark_elements(map);
+	mark_player(map, player);
+	flood_fill(map->map, player, map->width);
+	map->mlx = mlx_init();
+	map->wind = mlx_new_window(map->mlx, (map->width * 40),
+	 (map->row * 40), "so_long");
+	void	show_map(t_struct *map, int keycode);
+	// mlx_key_hook(win, key_press, NULL);
+	// mlx_hook(win, 17, 0, close_window, NULL);
+	// mlx_loop(mlx);
+}
 
 //this function is to handle when using esc button to close fdf
 // 53 in key code is esc
@@ -77,20 +104,7 @@ int	close_window(void *param)
 //     return (write(1, "SUCCESS", 1));
 // }
 
-int main(int ac, char **av)
-{
-	char		*files;
-	t_struct	*map;
-	if (ac != 2)
-		error_message("invalid input! please try again...");
 
-	files = av[1];
-	map = map_parsing(files);
-	// print_map(map);
-	// mlx_key_hook(win, key_press, NULL);
-	// mlx_hook(win, 17, 0, close_window, NULL);
-	// mlx_loop(mlx);
-}
 
 // #include <stdio.h>
 // void print_map(t_map *map_struct)
