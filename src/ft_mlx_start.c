@@ -6,7 +6,7 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 13:49:20 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/12 16:30:03 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/15 08:44:36 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	put_player(t_struct *map, int keycode, int i, int j)
 
 void	put_collectible(t_struct *map, int i, int j)
 {
-	mlx_put_image_to_window(map->mlx, map->wind, map->width, j * 40, i * 40);
+	mlx_put_image_to_window(map->mlx, map->wind, map->col, j * 40, i * 40);
 }
 
 void	put_exit(t_struct *map, int i, int j)

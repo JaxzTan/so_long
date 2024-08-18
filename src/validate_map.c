@@ -6,7 +6,7 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 10:09:43 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/12 11:41:54 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/14 13:39:24 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,11 @@ void	check_map_wall(t_struct *map, int width, int row)
 		}
 		i++;
 	}
+}
+
+void	check_map_shape(int width, int row)
+{
+	if (ft_strcmp(width, row) <= 0)
+		error_message("map not rectangle!");
+	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 15:27:02 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/12 16:30:25 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/15 11:14:40 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,15 @@ int main(int ac, char **av)
 	check_map_wall(map, map->width, map->row);
 	check_valid_element(map->map);
 	mark_elements(map);
-	mark_player(map, player);
+	player = mark_player(map, player);
 	flood_fill(map->map, player, map->width);
 	map->mlx = mlx_init();
 	map->wind = mlx_new_window(map->mlx, (map->width * 40),
 	 (map->row * 40), "so_long");
 	void	show_map(t_struct *map, int keycode);
-	// mlx_key_hook(win, key_press, NULL);
-	// mlx_hook(win, 17, 0, close_window, NULL);
-	// mlx_loop(mlx);
+	mlx_key_hook(map->wind, key_press, NULL);
+	mlx_hook(map->wind, 17, 0, close_window, NULL);
+	mlx_loop(map->mlx);
 }
 
 //this function is to handle when using esc button to close fdf

@@ -6,16 +6,16 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 15:23:50 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/12 12:17:00 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/15 11:09:18 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void check_valid_element(char **buffer)
+void	check_valid_element(char **buffer)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (buffer[i])
@@ -23,7 +23,7 @@ void check_valid_element(char **buffer)
 		j = 0;
 		while (buffer[i][j])
 		{
-			if (buffer[i][j] != '1' && buffer[i][j] != '0' && 
+			if (buffer[i][j] != '1' && buffer[i][j] != '0' &&
 			buffer[i][j] != 'P' && buffer[i][j] != 'C' && buffer[i][j] != 'E')
 				error_message("invalid char in map!");
 			j++;
@@ -33,17 +33,10 @@ void check_valid_element(char **buffer)
 	return ;
 }
 
-void	check_map_shape(int width, int row)
-{
-	if (ft_strcmp(width, row) <= 0)
-		error_message("map not rectangle!");
-	return ;
-}
-
 void	mark_elements(t_struct *map)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -68,10 +61,10 @@ void	mark_elements(t_struct *map)
 		error_message("invalid map elements!");
 }
 
-void	mark_player(t_struct *map, t_point player)
+t_point	mark_player(t_struct *map, t_point player)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -92,6 +85,7 @@ void	mark_player(t_struct *map, t_point player)
 	}
 	if (player.x == 0 || player.y == 0)
 		error_message("player not found!");
+	return (player);
 }
 
 void	fill(char **tab, t_point cur, int *c, int *e)
@@ -118,7 +112,7 @@ void	flood_fill(char **map, t_point begin, int col)
 	exit = 0;
 	fill(map, begin, &collectible, &exit);
 	if (collectible != col)
-		handle_error("Cannot reach all collectibles\n");
+		error_message("Cannot reach all collectibles\n");
 	if (exit != 1)
-		handle_error("Cannot reach exit\n");
+		error_message("Cannot reach exit\n");
 }

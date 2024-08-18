@@ -6,14 +6,14 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:35:55 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/12 16:30:36 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/17 10:58:41 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 # include "../libft/libft.h"
-# include <mlx.h>
+# include "../minilibx_opengl_20191021/mlx.h"
 # include <fcntl.h>
 
 typedef struct s_struct
@@ -58,28 +58,29 @@ char		**parsing(char **split, char *files);
 void		insert_2d(char **split, int width, int row, char **result);
 int			find_row(char **buffer);
 int			find_width(char **buffer);
+
+//checking map
 void		check_map_shape(int width, int row);
 void		check_valid_element(char **buffer);
 void		check_valid_map_name(char *str);
 void		check_map_wall(t_struct *map, int width, int row);
 void		mark_elements(t_struct *map);
-void		mark_player(t_struct *map, t_point player);
+t_point		mark_player(t_struct *map, t_point player);
 void		flood_fill(char **map, t_point begin, int col);
 void		fill(char **tab, t_point cur, int *c, int *e);
-
-
 
 //utils
 void		error_message(char *str);
 void		free_2d(char **str);
 int			game_over(t_struct *sl);
-void		free_map(int **map, int rows);
-
+void		free_map(char **map, int rows);
 
 //mlx start
-void	load_images(t_struct *map);
-void	show_map(t_struct *map, int keycode);
-
+void		load_images(t_struct *map);
+void		show_map(t_struct *map, int keycode);
+void		put_player(t_struct *map, int keycode, int i, int j);
+void		put_collectible(t_struct *map, int i, int j);
+void		put_exit(t_struct *map, int i, int j);
 
 //movement
 void		handle_move(t_struct *sl, t_struct *p, int keycode);

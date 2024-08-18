@@ -6,7 +6,7 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:37:44 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/12 10:59:30 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/15 09:24:45 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,16 @@
 
 void	error_message(char *str)
 {
-	ft_putstr_fd(str, 2);
-	ft_putstr_fd("Error\n", 2);
-	ft_putstr_fd("\n", 2);
+	ft_putstr_fd("Error : ", 2);
+	ft_printf("%s\n", str);
 	exit(1);
 }
 
-int	game_over(t_struct *sl)
+int	game_over(t_struct *map)
 {
 	ft_printf("Game over\n");
-	mlx_destroy_window(sl->mlx, sl->wind);
-	free_arr_str(sl->map);
+	mlx_destroy_window(map->mlx, map->wind);
+	free_map(map->map, map->row);
 	exit(0);
 }
 
@@ -43,7 +42,7 @@ void	free_2d(char **str)
 	free(str);
 }
 
-void	free_map(int **map, int rows)
+void	free_map(char **map, int rows)
 {
 	int	i;
 
