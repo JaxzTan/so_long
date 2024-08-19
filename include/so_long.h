@@ -6,7 +6,7 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:35:55 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/19 16:04:09 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/19 16:45:16 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int			find_width(char **buffer);
 void		check_map_shape(int width, int row);
 void		check_valid_element(char **buffer);
 void		check_valid_map_name(char *str);
-void		check_map_wall(char **map, int lines_num);
+void		check_map_wall(char **map, int row, int width);
 void		mark_elements(t_struct map);
 t_point		mark_player(t_struct map, t_point player);
 void		flood_fill(char **map, t_point begin, int col);

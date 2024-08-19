@@ -6,7 +6,7 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 15:27:02 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/19 16:03:17 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/19 16:44:47 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int main(int ac, char **av)
 	check_valid_map_name(files);
 	map = map_parsing(files);
 	check_map_shape(map.width, map.row);
-	check_map_wall(map.map, map.row);
+	check_map_wall(map.map, map.row, map.width);
 	check_valid_element(map.map);
 	mark_elements(map);
 	player = mark_player(map, player);

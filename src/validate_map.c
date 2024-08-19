@@ -6,7 +6,7 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 10:09:43 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/19 13:54:34 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/19 16:51:33 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,35 +27,31 @@ void	check_valid_map_name(char *str)
 			j++;
 		i++;
 	}
-	if (j != 3)
+	if (str1[j] != '\0')
 		error_message("Invalid map file type");
 	else
 		ft_printf("ok");
 }
 
-void	check_map_wall(char **map, int lines_num)
+void	check_map_wall(char **map, int row, int width)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < lines_num)
+	while (i < row)
 	{
 		j = 0;
-		if (i == 0 || i == lines_num - 1)
+		while (j < width)
 		{
-			while (map[i][j] && j < ft_strlen(map[0]) - 1)
-			{
-				if (map[i][j] != '1')
-					error_message("Map is not closed with walls\n");
-				j++;
-			}
-		}
-		j = 0;
-		while (map[i][j] && j < ft_strlen(map[0]) - 1)
-		{
-			if (map[i][0] != '1' || map[i][ft_strlen(map[0]) - 2] != '1')
-				error_message("Map is not closed with walls\n");
+			if (map[1][j] != '1')
+				error_message("map not surrounded by wall!");
+			else if (map[row][j] != '1')
+				error_message("map not surrounded by wall!");
+			else if (map[row][1] != '1')
+				error_message("map not surrounded by wall!");
+			else if (map[row][width] != '1')
+				error_message("map not surrounded by wall!");
 			j++;
 		}
 		i++;
@@ -64,7 +60,7 @@ void	check_map_wall(char **map, int lines_num)
 
 void	check_map_shape(int width, int row)
 {
-	if ( row < width)
+	if ( row > width)
 		error_message("map not rectangle!");
 	return ;
 }
