@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_mlx_start.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
+/*   By: chtan <chtan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 13:49:20 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/19 15:53:07 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/21 16:12:25 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ void	load_images(t_struct map)
 
 	x = 40;
 	y = 40;
-	map.wal = mlx_xpm_file_to_image(map.mlx, "char/wall.xpm", &x, &y);
-	map.flr = mlx_xpm_file_to_image(map.mlx, "char/grs.xpm", &x, &y);
-	map.lef = mlx_xpm_file_to_image(map.mlx, "char/lft.xpm", &x, &y);
-	map.rig = mlx_xpm_file_to_image(map.mlx, "char/rgh.xpm", &x, &y);
-	map.up = mlx_xpm_file_to_image(map.mlx, "char/up.xpm", &x, &y);
-	map.dow = mlx_xpm_file_to_image(map.mlx, "char/dwn.xpm", &x, &y);
-	map.col = mlx_xpm_file_to_image(map.mlx, "char/gds.xpm", &x, &y);
-	map.dc = mlx_xpm_file_to_image(map.mlx, "char/dc.xpm", &x, &y);
-	map.dro = mlx_xpm_file_to_image(map.mlx, "char/do.xpm", &x, &y);
+	map.wal = mlx_xpm_file_to_image(map.mlx, "../char/wall.xpm", &x, &y);
+	map.flr = mlx_xpm_file_to_image(map.mlx, "../char/grs.xpm", &x, &y);
+	map.lef = mlx_xpm_file_to_image(map.mlx, "../char/lft.xpm", &x, &y);
+	map.rig = mlx_xpm_file_to_image(map.mlx, "../char/rgh.xpm", &x, &y);
+	map.up = mlx_xpm_file_to_image(map.mlx, "c../har/up.xpm", &x, &y);
+	map.dow = mlx_xpm_file_to_image(map.mlx, "../char/dwn.xpm", &x, &y);
+	map.col = mlx_xpm_file_to_image(map.mlx, "../char/gds.xpm", &x, &y);
+	map.dc = mlx_xpm_file_to_image(map.mlx, "../char/dc.xpm", &x, &y);
+	map.dro = mlx_xpm_file_to_image(map.mlx, "../char/do.xpm", &x, &y);
 }
 
 void	show_map(t_struct map, int keycode)

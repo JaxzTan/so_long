@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
+/*   By: chtan <chtan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:35:55 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/19 16:45:16 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/21 16:03:34 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 # include "../libft/libft.h"
-# include "../minilibx_opengl_20191021/mlx.h"
+# include "../minilibx-linux/mlx.h"
+// # include <mlx.h>
 # include <fcntl.h>
 
 typedef struct s_struct
@@ -56,7 +57,7 @@ int 		key_press(int keycode, void *param);
 // parsing map
 t_struct	map_parsing(char *files);
 char		**parsing(char *files);
-void		insert_2d(char **split, int width, int row, char **result);
+char 		**insert_2d(char **split, int width, int row, t_struct map);
 int			find_row(char **buffer);
 int			find_width(char **buffer);
 

@@ -2,7 +2,7 @@
 CC = cc
 
 # Compiler flags
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3 -ggdb
 
 # Directories
 SRC_DIR = src
@@ -26,7 +26,7 @@ INCLUDES = -I$(INCLUDE_DIR)
 
 LINKS = -lft -L libft \
     $(INCLUDES) -L $(INCLUDE_DIR) \
-    -l mlx -framework OpenGL -framework Appkit
+    -l mlx -framework OpenGL -framework Appkit -Imlx_linux -O3 
 
 ifeq ($(shell uname), Darwin)
     LINKS += -framework OpenGL -framework Appkit

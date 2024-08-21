@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
+/*   By: chtan <chtan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:41:26 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/19 16:04:23 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/21 15:59:25 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_struct	map_parsing(char *files)
 	array = parsing(files);
 	map.row = find_row(array);
 	map.width = find_width(array);
-	insert_2d(array, map.width, map.row, map.map);
+	map.map = insert_2d(array, map.width, map.row, map);
 	if (!map.map)
 	{
 		free_map(map.map, map.row);
@@ -74,30 +74,31 @@ int	find_width(char **buffer)
 }
 
 //tranfer whole 2d array after split into t_struct.
-void	insert_2d(char **split, int width, int row, char **result)
+char 	**insert_2d(char **split, int width, int row, t_struct map)
 {
 	int		i;
 	int		j;
 
-	result = (char **)malloc(sizeof(char *) * (row + 1));
-	if (!result)
+	map.map = (char **)malloc(sizeof(char *) * (row + 1));
+	if (!map.map)
 		error_message("Error: Memory allocation failed");
 	i = 0;
 	while (i < row)
 	{
-		result[i] = (char *)malloc(sizeof(char) * (width + 1));
-		if (!result[i])
+		map.map[i] = (char *)malloc(sizeof(char) * (width + 1));
+		if (!map.map[i])
 		{
-			free_2d(result);
+			free_2d(map.map);
 			error_message("Error: Memory allocation failed");
 		}
 		j = 0;
 		while (j < width)
 		{
-			result[i][j] = split[i][j];
+			map.map[i][j] = split[i][j];
 			j++;
 		}
-		result[i][j] = '\0';
+		map.map[i][j] = '\0';
 		i++;
 	}
+	return (map.map);
 }
