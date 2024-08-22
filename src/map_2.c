@@ -6,7 +6,7 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 15:23:50 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/19 15:53:25 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/22 12:17:09 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ t_point	mark_player(t_struct map, t_point player)
 		{
 			if (map.map[i][j] == 'P')
 			{
-				player.x = i;
-				player.y = j;
+				player.x = j;
+				player.y = i;
 			}
 			j++;
 		}

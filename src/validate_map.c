@@ -6,31 +6,25 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 10:09:43 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/19 16:51:33 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/22 09:24:29 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void	check_valid_map_name(char *str)
+void	check_valid_map_name(char *file)
 {
-	char	*str1;
 	int		i;
-	int		j;
+	char	*extension;
 
-	str1 = ".ber";
-	i = 0;
-	j = 0;
-	while (str[i] != '\0')
+	i = ft_strlen(file) - 4;
+	extension = ft_substr(file, i, 4);
+	if (ft_strncmp(".ber", extension, 10) != 0)
 	{
-		if (str[i] == str1[j])
-			j++;
-		i++;
+		free(extension);
+		error_message("Map must be ber file\n");
 	}
-	if (str1[j] != '\0')
-		error_message("Invalid map file type");
-	else
-		ft_printf("ok");
+	free(extension);
 }
 
 void	check_map_wall(char **map, int row, int width)

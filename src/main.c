@@ -6,22 +6,23 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 15:27:02 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/19 16:44:47 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/22 12:20:10 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	char		*files;
 	t_struct	map;
 	t_point		player;
 
+	player.x = 0;
+	player.y = 0;
 	if (ac != 2)
 		error_message("invalid input! please try again...");
 	files = av[1];
-	player = (t_point){0};
 	check_valid_map_name(files);
 	map = map_parsing(files);
 	check_map_shape(map.width, map.row);
@@ -31,8 +32,8 @@ int main(int ac, char **av)
 	player = mark_player(map, player);
 	flood_fill(map.map, player, map.width);
 	map.mlx = mlx_init();
-	map.wind = mlx_new_window(map.mlx, (map.width * 40),
-	 (map.row * 40), "so_long");
+	map.wind = mlx_new_window(map.mlx, (map.width * 50),
+			(map.row * 50), "so_long");
 	load_images(map);
 	show_map(map, 2);
 	mlx_key_hook(map.wind, key_press, NULL);
@@ -104,8 +105,6 @@ int	close_window(void *param)
 // 	mlx_loop(mlx);
 //     return (write(1, "SUCCESS", 1));
 // }
-
-
 
 // #include <stdio.h>
 // void print_map(t_map *map_struct)
