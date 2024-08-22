@@ -20,11 +20,6 @@ OBJS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
 # Include directories
 INCLUDES = -I$(INCLUDE_DIR)
 
-# Links
-# LINKS = -I $(LIB_DIR) -L $(LIB_DIR) \
-#     -I $(INCLUDE_DIR) -L $(INCLUDE_DIR) \
-#     -lmlx -lft
-
 LINKS = -lft -L libft \
     $(INCLUDES) -L $(INCLUDE_DIR) \
     -l mlx -framework OpenGL -framework Appkit -Imlx_linux -O3 
