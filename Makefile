@@ -28,6 +28,10 @@ ifeq ($(shell uname), Darwin)
     LINKS += -framework OpenGL -framework Appkit
 endif
 
+ifeq ($(shell uname), Linux)
+	LINKS += -lXext -lX11 -lm
+endif
+
 # Target executable
 NAME = so_long
 
