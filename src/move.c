@@ -14,7 +14,6 @@
 
 void	handle_move(t_struct map, t_point cur, int keycode)
 {
-	map.col_num = map.width;
 	if (keycode == 0)
 		move_leftside(map, cur);
 	if (keycode == 1)
