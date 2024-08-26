@@ -6,7 +6,7 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 16:12:36 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/26 19:03:36 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/26 19:14:45 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	move_leftside(t_struct map, t_point p)
 	if (map.map[p.y][p.x - 1] != '1' && map.map[p.y][p.x - 1] != 'E')
 	{
 		if (map.map[p.y][p.x - 1] == 'C')
-			map.col_num--;
+			map.collectible--;
+		ft_printf("collectible: %d\n", map.collectible);
 		map.map[p.y][p.x - 1] = 'P';
 		map.map[p.y][p.x] = '0';
 		map.moves++;
@@ -53,7 +54,8 @@ void	move_upside(t_struct map, t_point p)
 	if (map.map[p.y - 1][p.x] != '1' && map.map[p.y - 1][p.x] != 'E')
 	{
 		if (map.map[p.y - 1][p.x] == 'C')
-			map.col_num--;
+			map.collectible--;
+		ft_printf("collectible: %d\n", map.collectible);
 		map.map[p.y - 1][p.x] = 'P';
 		map.map[p.y][p.x] = '0';
 		map.moves++;
@@ -74,7 +76,8 @@ void	move_rightside(t_struct map, t_point p)
 	if (map.map[p.y][p.x + 1] != '1' && map.map[p.y][p.x + 1] != 'E')
 	{
 		if (map.map[p.y][p.x + 1] == 'C')
-			map.col_num--;
+			map.collectible--;
+		ft_printf("collectible: %d\n", map.collectible);
 		map.map[p.y][p.x + 1] = 'P';
 		map.map[p.y][p.x] = '0';
 		map.moves++;
@@ -95,7 +98,8 @@ void	move_downside(t_struct map, t_point p)
 	if (map.map[p.y + 1][p.x] != '1' && map.map[p.y + 1][p.x] != 'E')
 	{
 		if (map.map[p.y + 1][p.x] == 'C')
-			map.col_num--;
+			map.collectible--;
+		ft_printf("collectible: %d\n", map.collectible);
 		map.map[p.y + 1][p.x] = 'P';
 		map.map[p.y][p.x] = '0';
 		map.moves++;

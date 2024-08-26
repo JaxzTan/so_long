@@ -6,7 +6,7 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 15:27:02 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/26 19:04:03 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/26 19:11:16 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	main(int ac, char **av)
 		(map.line_nb * 40), "so_long");
 	load_images(&map);
 	show_map(map, 2);
+	map.moves = 0;
 	mlx_hook(map.wind, 2, 1L << 0, &key_hook, &map);
 	mlx_hook(map.wind, 17, 1L, &game_over, &map);
 	mlx_key_hook(map.wind, key_press, NULL);

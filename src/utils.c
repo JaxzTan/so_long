@@ -6,7 +6,7 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:37:44 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/26 19:02:11 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/26 19:07:25 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	game_over(t_struct *map)
 	map1 = *map;
 	ft_printf("Game over\n");
 	mlx_destroy_window(map1.mlx, map1.wind);
-	free_map(map1.map, map1.row);
+	free_2d(map1.map);
 	exit(0);
 }
 

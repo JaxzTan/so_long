@@ -6,7 +6,7 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 13:49:20 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/26 18:05:16 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/26 19:10:31 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	put_collectible(t_struct map, int i, int j)
 
 void	put_exit(t_struct map, int i, int j)
 {
-	if (map.width == 0)
+	if (map.collectible == 0)
 		mlx_put_image_to_window(map.mlx, map.wind, map.dro, j * 40, i * 40);
 	else
 		mlx_put_image_to_window(map.mlx, map.wind, map.dc, j * 40, i * 40);
