@@ -6,14 +6,13 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:35:55 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/26 14:03:58 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/26 19:02:34 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 # include "../libft/libft.h"
-// # include "../minilibx-linux/mlx.h"
 # include <mlx.h>
 # include <fcntl.h>
 
@@ -54,6 +53,7 @@ typedef struct s_point
 //main
 int			close_window(void *param);
 int			key_press(int keycode, void *param);
+int			key_hook(int keycode, t_struct *map);
 
 // parsing map
 t_struct	map_parsing(char *files);
@@ -65,24 +65,27 @@ int			find_width(char **buffer);
 //checking map
 void		check_map_shape(int width, int row);
 void		check_valid_element(char **buffer);
+int			count_collectible_check(t_struct map, int lines_num);
 void		check_valid_map_name(char *str);
 void		check_map_wall(char **map, int row, int width);
 void		mark_elements(t_struct map);
-t_point		mark_player(t_struct map);
+t_point		mark_player(char **map);
 void		flood_fill(char **map, t_point begin, int col);
 void		fill(char **tab, t_point cur, int *c, int *e);
+void		check_valid_path(char *file, t_struct map, t_point player);
+
 
 //utils
 void		error_message(char *str);
 void		free_2d(char **str);
-int			game_over(t_struct map);
+int			game_over(t_struct *map);
 void		free_map(char **map, int rows);
 int			get_line_nb(char *file);
 char		**read_map_file(char *file, int lines_num);
 
 
 //mlx start
-void		load_images(t_struct map);
+void		load_images(t_struct *map);
 void		show_map(t_struct map, int keycode);
 void		put_player(t_struct map, int keycode, int i, int j);
 void		put_collectible(t_struct map, int i, int j);
@@ -96,5 +99,4 @@ void		move_rightside(t_struct map, t_point p);
 void		move_downside(t_struct map, t_point p);
 
 // void print_2d(char **map);
-
 #endif

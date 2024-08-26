@@ -6,62 +6,40 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 15:23:50 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/26 12:29:21 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/26 17:11:00 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-void	check_valid_element(char **buffer)
+int	count_collectible_check(t_struct map, int lines_num)
 {
 	int	i;
 	int	j;
 
-	i = 0;
-	while (buffer[i])
-	{
-		j = 0;
-		while (buffer[i][j])
-		{
-			if (buffer[i][j] != '1' && buffer[i][j] != '0' &&
-			buffer[i][j] != 'P' && buffer[i][j] != 'C' && buffer[i][j] != 'E')
-				error_message("invalid char in map!");
-			j++;
-		}
-		i++;
-	}
-	return ;
-}
-
-void	mark_elements(t_struct map)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
+	i = -1;
 	map.collectible = 0;
+	map.player = 0;
 	map.exit = 0;
-	map.player = 1;
-	while (map.map[i])
+	while (++i < lines_num - 1)
 	{
-		while (map.map[i][j])
+		j = -1;
+		while (++j < ft_strlen(map.map[0]) - 1)
 		{
 			if (map.map[i][j] == 'C')
 				map.collectible++;
-			else if (map.map[i][j] == 'E')
-				map.exit++;
-			else if (map.map[i][j] == 'P')
+			if (map.map[i][j] == 'P')
 				map.player++;
-			j++;
+			if (map.map[i][j] == 'E')
+				map.exit++;
 		}
-		i++;
 	}
-	if (map.collectible <= 0 || map.player != 1 || map.exit != 1)
+	if (map.collectible == 0 || map.player != 1 || map.exit != 1)
 		error_message("invalid map elements!");
+	return (map.collectible);
 }
 
-t_point	mark_player(t_struct map)
+t_point	mark_player(char **map)
 {
 	t_point	player;
 	int	i;
@@ -71,11 +49,12 @@ t_point	mark_player(t_struct map)
 	j = 0;
 	player.x = 0;
 	player.y = 0;
-	while (map.map[i])
+	while (map[i])
 	{
-		while (map.map[i][j])
+		j = 0;
+		while (map[i][j])
 		{
-			if (map.map[i][j] == 'P')
+			if (map[i][j] == 'P')
 			{
 				player.x = j;
 				player.y = i;
@@ -113,7 +92,18 @@ void	flood_fill(char **map, t_point begin, int col)
 	exit = 0;
 	fill(map, begin, &collectible, &exit);
 	if (collectible != col)
-		error_message("Cannot reach all collectibles\n");
+		error_message("Cannot reach all collectibles");
 	if (exit != 1)
-		error_message("Cannot reach exit\n");
+		error_message("Cannot reach exit");
+}
+
+void	check_valid_path(char *file, t_struct map, t_point player)
+{
+	char	**array;
+
+	array = read_map_file(file, map.row);
+	if (!array)
+		error_message("Cannot read map file");
+	flood_fill(array, player, map.collectible);
+	free_2d(array);
 }

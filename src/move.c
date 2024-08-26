@@ -6,7 +6,7 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 16:12:36 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/26 11:43:56 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/26 19:03:36 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	handle_move(t_struct map, t_point cur, int keycode)
 	if (keycode == 13)
 		move_upside(map, cur);
 	if (keycode == 53)
-		game_over(map);
+		game_over(&map);
 }
 
 void	move_leftside(t_struct map, t_point p)

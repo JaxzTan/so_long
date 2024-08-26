@@ -6,7 +6,7 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 15:27:02 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/26 13:45:04 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/26 19:04:03 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,19 @@ int	main(int ac, char **av)
 		error_message("invalid input! please try again...");
 	check_valid_map_name(av[1]);
 	map = map_parsing(av[1]);
-	check_map_shape(map.width, map.row);
 	check_map_wall(map.map, map.row, map.width);
 	check_valid_element(map.map);
-	mark_elements(map);
-	player = mark_player(map);
-	flood_fill(map.map, player, map.width);
+	player = mark_player(map.map);
+	map.collectible = count_collectible_check(map, map.row);
+	check_valid_path(av[1], map, player);
 	map.mlx = mlx_init();
-	map.wind = mlx_new_window(map.mlx, (map.width * 40),
-			(map.row * 40), "so_long");
-	load_images(map);
+	map.wind = mlx_new_window(map.mlx, 
+		(ft_strlen(map.map[map.line_nb -1]) * 40), 
+		(map.line_nb * 40), "so_long");
+	load_images(&map);
 	show_map(map, 2);
+	mlx_hook(map.wind, 2, 1L << 0, &key_hook, &map);
+	mlx_hook(map.wind, 17, 1L, &game_over, &map);
 	mlx_key_hook(map.wind, key_press, NULL);
 	mlx_hook(map.wind, 17, 0, close_window, NULL);
 	mlx_loop(map.mlx);
@@ -51,6 +53,18 @@ int	key_press(int keycode, void *param)
 		exit(0);
 	}
 	return (0);
+}
+
+int	key_hook(int keycode, t_struct *map)
+{
+	t_point	p;
+	t_struct	map1; 
+	
+	map1= *map;
+	p = mark_player(map1.map);
+	handle_move(map1, p, keycode);
+	show_map(map1, keycode);
+	return (1);
 }
 
 // this function is handle close by clicking the x in the window fdf

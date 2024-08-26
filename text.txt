@@ -1,5 +1,5 @@
-check valid map
-check parsing map
+check valid map done
+check parsing map done
 check map shape
 check map wall
 check valid element

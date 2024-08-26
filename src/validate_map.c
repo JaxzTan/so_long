@@ -6,7 +6,7 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 10:09:43 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/26 14:02:19 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/26 15:02:24 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void	check_valid_map_name(char *file)
 	free(extension);
 }
 
-void	check_map_wall(char **map, int row, int width)
+void check_map_wall(char **map, int row, int width)
 {
-	int	i;
-	int	j;
+	int i;
+	int j;
 
 	i = 0;
 	while (i < row)
@@ -38,14 +38,11 @@ void	check_map_wall(char **map, int row, int width)
 		j = 0;
 		while (j < width)
 		{
-			if (map[1][j] != '1')
-				error_message("map not surrounded by wall!");
-			else if (map[row][j] != '1')
-				error_message("map not surrounded by wall!");
-			else if (map[row][1] != '1')
-				error_message("map not surrounded by wall!");
-			else if (map[row][width] != '1')
-				error_message("map not surrounded by wall!");
+			if (i == 0 || i == row - 1 || j == 0 || j == width - 1)
+			{
+				if (map[i][j] != '1')
+					error_message("map not surrounded by wall!");
+			}
 			j++;
 		}
 		i++;
@@ -56,4 +53,25 @@ void	check_map_shape(int width, int row)
 {
 	if (row > width)
 		error_message("map not rectangle!");
+}
+
+void	check_valid_element(char **buffer)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (buffer[i])
+	{
+		j = 0;
+		while (buffer[i][j])
+		{
+			if (buffer[i][j] != '1' && buffer[i][j] != '0' &&
+			buffer[i][j] != 'P' && buffer[i][j] != 'C' && buffer[i][j] != 'E')
+				error_message("invalid char in map!");
+			j++;
+		}
+		i++;
+	}
+	return ;
 }
