@@ -1,0 +1,6 @@
+check valid map
+check parsing map
+check map shape
+check map wall
+check valid element
+check mark player

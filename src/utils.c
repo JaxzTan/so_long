@@ -6,7 +6,7 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:37:44 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/19 16:04:42 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/26 13:50:06 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,24 @@ void	free_2d(char **str)
 	free(str);
 }
 
-void	free_map(char **map, int rows)
+// finding row for easier to copy 2d array in struct
+int	find_row(char **buffer)
 {
 	int	i;
 
 	i = 0;
-	while (i < rows)
-	{
-		free(map[i]);
+	while (buffer[i])
 		i++;
-	}
-	free(map);
+	return (i);
+}
+
+// this one is width
+int	find_width(char **buffer)
+{
+	int	i;
+
+	i = 0;
+	while (buffer[0][i] >= 33 && buffer[0][i] <= 126)
+		i++;
+	return (i);
 }

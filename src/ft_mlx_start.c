@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_mlx_start.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chtan <chtan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 13:49:20 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/21 16:12:25 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/26 11:42:32 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	load_images(t_struct map)
 	map.flr = mlx_xpm_file_to_image(map.mlx, "../char/grs.xpm", &x, &y);
 	map.lef = mlx_xpm_file_to_image(map.mlx, "../char/lft.xpm", &x, &y);
 	map.rig = mlx_xpm_file_to_image(map.mlx, "../char/rgh.xpm", &x, &y);
-	map.up = mlx_xpm_file_to_image(map.mlx, "c../har/up.xpm", &x, &y);
+	map.up = mlx_xpm_file_to_image(map.mlx, "../char/up.xpm", &x, &y);
 	map.dow = mlx_xpm_file_to_image(map.mlx, "../char/dwn.xpm", &x, &y);
 	map.col = mlx_xpm_file_to_image(map.mlx, "../char/gds.xpm", &x, &y);
 	map.dc = mlx_xpm_file_to_image(map.mlx, "../char/dc.xpm", &x, &y);

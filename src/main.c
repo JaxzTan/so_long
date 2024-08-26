@@ -6,7 +6,7 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 15:27:02 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/22 12:20:10 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/26 13:45:04 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,22 @@
 
 int	main(int ac, char **av)
 {
-	char		*files;
 	t_struct	map;
 	t_point		player;
 
-	player.x = 0;
-	player.y = 0;
 	if (ac != 2)
 		error_message("invalid input! please try again...");
-	files = av[1];
-	check_valid_map_name(files);
-	map = map_parsing(files);
+	check_valid_map_name(av[1]);
+	map = map_parsing(av[1]);
 	check_map_shape(map.width, map.row);
 	check_map_wall(map.map, map.row, map.width);
 	check_valid_element(map.map);
 	mark_elements(map);
-	player = mark_player(map, player);
+	player = mark_player(map);
 	flood_fill(map.map, player, map.width);
 	map.mlx = mlx_init();
-	map.wind = mlx_new_window(map.mlx, (map.width * 50),
-			(map.row * 50), "so_long");
+	map.wind = mlx_new_window(map.mlx, (map.width * 40),
+			(map.row * 40), "so_long");
 	load_images(map);
 	show_map(map, 2);
 	mlx_key_hook(map.wind, key_press, NULL);
@@ -106,19 +102,15 @@ int	close_window(void *param)
 //     return (write(1, "SUCCESS", 1));
 // }
 
-// #include <stdio.h>
-// void print_map(t_map *map_struct)
-// {
-//     printf("Height: %d\n", map_struct.height);
-//     printf("Row: %d\n", map_struct.row);
-//     printf("Width: %d\n", map_struct.width);
+void	free_map(char **map, int rows)
+{
+	int	i;
 
-//     for (int i = 0; i < map_struct.height; i++)
-//     {
-//         for (int j = 0; j < map_struct.width; j++)
-//         {
-//             printf("%d ", map_struct.map[i][j]);
-//         }
-//         printf("\n");
-//     }
-// }
+	i = 0;
+	while (i < rows)
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
+}

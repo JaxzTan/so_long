@@ -6,7 +6,7 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 15:23:50 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/22 12:17:09 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/26 12:29:21 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,9 @@ void	mark_elements(t_struct map)
 		error_message("invalid map elements!");
 }
 
-t_point	mark_player(t_struct map, t_point player)
+t_point	mark_player(t_struct map)
 {
+	t_point	player;
 	int	i;
 	int	j;
 

@@ -3,28 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chtan <chtan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:35:55 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/22 16:04:07 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/26 14:03:58 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 # include "../libft/libft.h"
-# include "../minilibx-linux/mlx.h"
-// # include <mlx.h>
+// # include "../minilibx-linux/mlx.h"
+# include <mlx.h>
 # include <fcntl.h>
 
 typedef struct s_struct
 {
-	int	collectible;
-	int	exit;
-	int	player;
+	int		collectible;
+	int		exit;
+	int		player;
 
+	int 	line_nb;
 	int		col_num;
-	int 	row;
+	int		row;
 	int		width;
 	char	**map;
 
@@ -51,13 +52,13 @@ typedef struct s_point
 }	t_point;
 
 //main
-int 		close_window(void *param);
-int 		key_press(int keycode, void *param);
+int			close_window(void *param);
+int			key_press(int keycode, void *param);
 
 // parsing map
 t_struct	map_parsing(char *files);
 char		**parsing(char *files);
-char 		**insert_2d(char **split, int width, int row, t_struct map);
+char		**insert_2d(char **split, int width, int row, t_struct map);
 int			find_row(char **buffer);
 int			find_width(char **buffer);
 
@@ -67,7 +68,7 @@ void		check_valid_element(char **buffer);
 void		check_valid_map_name(char *str);
 void		check_map_wall(char **map, int row, int width);
 void		mark_elements(t_struct map);
-t_point		mark_player(t_struct map, t_point player);
+t_point		mark_player(t_struct map);
 void		flood_fill(char **map, t_point begin, int col);
 void		fill(char **tab, t_point cur, int *c, int *e);
 
@@ -76,6 +77,9 @@ void		error_message(char *str);
 void		free_2d(char **str);
 int			game_over(t_struct map);
 void		free_map(char **map, int rows);
+int			get_line_nb(char *file);
+char		**read_map_file(char *file, int lines_num);
+
 
 //mlx start
 void		load_images(t_struct map);
@@ -90,5 +94,7 @@ void		move_leftside(t_struct map, t_point p);
 void		move_upside(t_struct map, t_point p);
 void		move_rightside(t_struct map, t_point p);
 void		move_downside(t_struct map, t_point p);
+
+// void print_2d(char **map);
 
 #endif

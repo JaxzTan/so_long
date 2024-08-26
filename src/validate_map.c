@@ -6,7 +6,7 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 10:09:43 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/22 09:24:29 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/26 14:02:19 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	check_valid_map_name(char *file)
 	if (ft_strncmp(".ber", extension, 10) != 0)
 	{
 		free(extension);
-		error_message("Map must be ber file\n");
+		error_message("Map must be .ber file");
 	}
 	free(extension);
 }
@@ -54,7 +54,6 @@ void	check_map_wall(char **map, int row, int width)
 
 void	check_map_shape(int width, int row)
 {
-	if ( row > width)
+	if (row > width)
 		error_message("map not rectangle!");
-	return ;
 }

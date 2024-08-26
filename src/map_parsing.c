@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chtan <chtan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:41:26 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/21 15:59:25 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/26 13:55:42 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,70 +18,74 @@ t_struct	map_parsing(char *files)
 	t_struct	map;
 	char		**array;
 
-	array = parsing(files);
+	map.line_nb = get_line_nb(files);
+	array = read_map_file(files, map.line_nb);
 	map.row = find_row(array);
 	map.width = find_width(array);
 	map.map = insert_2d(array, map.width, map.row, map);
 	if (!map.map)
 	{
 		free_map(map.map, map.row);
-		error_message("Error: Map is empty");
+		error_message("Map is empty");
 	}
 	free_2d(array);
 	return (map);
 }
 
-// this function is almost same with gnl main funcion
-// it's doing open files get files and split using ft_split
-char	**parsing(char *files)
+int	get_line_nb(char *file)
 {
 	int		fd;
-	char	*line;
-	char	**split;
+	int		lines_num;
+	char	*str;
 
-	fd = open(files, O_RDONLY);
-	if (fd < 0)
-		error_message("Error: File not found");
-	line = get_next_line(fd);
-	if (line == NULL)
-		return (NULL);
-	split = ft_split(line, ' ');
-	free(line);
+	lines_num = 0;
+	fd = open(file, O_RDONLY);
+	if (fd == -1)
+		error_message("Fail to open file\n");
+	str = get_next_line(fd);
+	while (str)
+	{
+		lines_num++;
+		free(str);
+		str = get_next_line(fd);
+	}
+	if (lines_num == 0)
+		error_message("Map file is empty\n");
 	close(fd);
-	return (split);
+	return (lines_num);
 }
 
-// finding row for easier to copy 2d array in struct
-int	find_row(char **buffer)
+char	**read_map_file(char *file, int lines_num)
 {
-	int	i;
+	char	**map;
+	int		i;
+	int		fd;
 
+	fd = open(file, O_RDONLY);
+	if (fd == -1)
+		error_message("Fail to open file\n");
+	map = (char **)malloc(sizeof(char *) * (lines_num + 1));
+	if (!map)
+		error_message("Fail to allocate memory\n");
 	i = 0;
-	while (buffer[i] != NULL)
+	while (i < lines_num)
+	{
+		map[i] = get_next_line(fd);
 		i++;
-	return (i);
-}
-
-// this one is width
-int	find_width(char **buffer)
-{
-	int	i;
-
-	i = 0;
-	while (buffer[0][i] >= 33 && buffer[0][i] <= 126)
-		i++;
-	return (i);
+	}
+	map[i] = NULL;
+	return (map);
 }
 
 //tranfer whole 2d array after split into t_struct.
-char 	**insert_2d(char **split, int width, int row, t_struct map)
+char	**insert_2d(char **split, int width, int row, t_struct map)
 {
 	int		i;
 	int		j;
 
 	map.map = (char **)malloc(sizeof(char *) * (row + 1));
 	if (!map.map)
-		error_message("Error: Memory allocation failed");
+		error_message("Memory allocation failed");
 	i = 0;
 	while (i < row)
 	{
@@ -89,7 +93,7 @@ char 	**insert_2d(char **split, int width, int row, t_struct map)
 		if (!map.map[i])
 		{
 			free_2d(map.map);
-			error_message("Error: Memory allocation failed");
+			error_message("	Memory allocation failed");
 		}
 		j = 0;
 		while (j < width)
@@ -100,5 +104,18 @@ char 	**insert_2d(char **split, int width, int row, t_struct map)
 		map.map[i][j] = '\0';
 		i++;
 	}
+	map.map[i] = NULL;
 	return (map.map);
 }
+
+//void print_2d(char **map)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (map[i])
+// 	{
+// 		ft_printf("%s\n", map[i]);
+// 		i++;
+// 	}
+// }
