@@ -6,7 +6,7 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:41:26 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/26 13:55:42 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/27 14:52:30 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,12 +95,9 @@ char	**insert_2d(char **split, int width, int row, t_struct map)
 			free_2d(map.map);
 			error_message("	Memory allocation failed");
 		}
-		j = 0;
-		while (j < width)
-		{
+		j = -1;
+		while (++j < width)
 			map.map[i][j] = split[i][j];
-			j++;
-		}
 		map.map[i][j] = '\0';
 		i++;
 	}
@@ -108,14 +105,30 @@ char	**insert_2d(char **split, int width, int row, t_struct map)
 	return (map.map);
 }
 
-//void print_2d(char **map)
-// {
-// 	int	i;
+void	initialize(t_struct *map)
+{
+	t_struct	map1;
 
-// 	i = 0;
-// 	while (map[i])
-// 	{
-// 		ft_printf("%s\n", map[i]);
-// 		i++;
-// 	}
-// }
+	map1 = *map;
+	map1.collectible = 0;
+	map1.exit = 0;
+	map1.player = 0;
+	map1.line_nb = 0;
+	map1.col_num = 0;
+	map1.row = 0;
+	map1.width = 0;
+	map1.map = NULL;
+	map1.moves = 0;
+	map1.collectible = 0;
+	map1.mlx = NULL;
+	map1.wind = NULL;
+	map1.wal = NULL;
+	map1.up = NULL;
+	map1.lef = NULL;
+	map1.rig = NULL;
+	map1.dow = NULL;
+	map1.flr = NULL;
+	map1.dc = NULL;
+	map1.dro = NULL;
+	map1.col = NULL;
+}

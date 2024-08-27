@@ -6,7 +6,7 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:35:55 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/26 19:02:34 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/27 14:38:19 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,21 +82,22 @@ int			game_over(t_struct *map);
 void		free_map(char **map, int rows);
 int			get_line_nb(char *file);
 char		**read_map_file(char *file, int lines_num);
+void		initialize(t_struct *map);
 
 
 //mlx start
 void		load_images(t_struct *map);
-void		show_map(t_struct map, int keycode);
-void		put_player(t_struct map, int keycode, int i, int j);
-void		put_collectible(t_struct map, int i, int j);
-void		put_exit(t_struct map, int i, int j);
+void		show_map(t_struct *map, int keycode);
+void		put_player(t_struct *map, int keycode, int i, int j);
+void		put_collectible(t_struct *map, int i, int j);
+void		put_exit(t_struct *map, int i, int j);
 
 //movement
-void		handle_move(t_struct map, t_point cur, int keycode);
-void		move_leftside(t_struct map, t_point p);
-void		move_upside(t_struct map, t_point p);
-void		move_rightside(t_struct map, t_point p);
-void		move_downside(t_struct map, t_point p);
+void		handle_move(t_struct *map, t_point *cur, int keycode);
+void		move_leftside(t_struct *map, t_point *p);
+void		move_upside(t_struct *map, t_point *p);
+void		move_rightside(t_struct *map, t_point *p);
+void		move_downside(t_struct *map, t_point *p);
 
 // void print_2d(char **map);
 #endif

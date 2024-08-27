@@ -6,7 +6,7 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 10:09:43 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/26 15:02:24 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/27 14:54:06 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void	check_valid_map_name(char *file)
 	free(extension);
 }
 
-void check_map_wall(char **map, int row, int width)
+void	check_map_wall(char **map, int row, int width)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < row)

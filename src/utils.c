@@ -6,7 +6,7 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:37:44 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/26 19:07:25 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/27 14:53:38 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	error_message(char *str)
 
 int	game_over(t_struct *map)
 {
-	t_struct map1;
-	
+	t_struct	map1;
+
 	map1 = *map;
 	ft_printf("Game over\n");
 	mlx_destroy_window(map1.mlx, map1.wind);

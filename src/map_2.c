@@ -6,7 +6,7 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 15:23:50 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/26 17:11:00 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/27 14:51:01 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int	count_collectible_check(t_struct map, int lines_num)
 t_point	mark_player(char **map)
 {
 	t_point	player;
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
@@ -100,10 +100,12 @@ void	flood_fill(char **map, t_point begin, int col)
 void	check_valid_path(char *file, t_struct map, t_point player)
 {
 	char	**array;
+	int		i;
 
+	i = map.collectible;
 	array = read_map_file(file, map.row);
 	if (!array)
 		error_message("Cannot read map file");
-	flood_fill(array, player, map.collectible);
+	flood_fill(array, player, i);
 	free_2d(array);
 }

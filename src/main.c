@@ -6,7 +6,7 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 15:27:02 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/26 19:11:16 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/27 14:51:27 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		error_message("invalid input! please try again...");
+	initialize(&map);
 	check_valid_map_name(av[1]);
 	map = map_parsing(av[1]);
 	check_map_wall(map.map, map.row, map.width);
@@ -27,14 +28,14 @@ int	main(int ac, char **av)
 	map.collectible = count_collectible_check(map, map.row);
 	check_valid_path(av[1], map, player);
 	map.mlx = mlx_init();
-	map.wind = mlx_new_window(map.mlx, 
-		(ft_strlen(map.map[map.line_nb -1]) * 40), 
-		(map.line_nb * 40), "so_long");
+	map.wind = mlx_new_window(map.mlx,
+			(ft_strlen(map.map[map.line_nb -1]) * 40),
+			(map.line_nb * 40), "so_long");
 	load_images(&map);
-	show_map(map, 2);
+	show_map(&map, 2);
 	map.moves = 0;
-	mlx_hook(map.wind, 2, 1L << 0, &key_hook, &map);
-	mlx_hook(map.wind, 17, 1L, &game_over, &map);
+	mlx_hook(map.wind, 2, 1L << 0, key_hook, &map);
+	mlx_hook(map.wind, 17, 1L, game_over, &map);
 	mlx_key_hook(map.wind, key_press, NULL);
 	mlx_hook(map.wind, 17, 0, close_window, NULL);
 	mlx_loop(map.mlx);
@@ -59,12 +60,10 @@ int	key_press(int keycode, void *param)
 int	key_hook(int keycode, t_struct *map)
 {
 	t_point	p;
-	t_struct	map1; 
-	
-	map1= *map;
-	p = mark_player(map1.map);
-	handle_move(map1, p, keycode);
-	show_map(map1, keycode);
+
+	p = mark_player(map->map);
+	handle_move(map, &p, keycode);
+	show_map(map, keycode);
 	return (1);
 }
 
@@ -103,20 +102,6 @@ int	close_window(void *param)
 	key hook and hok is same just handle different ways to close the windows
 	mlx_loop is to keep the windows open
 */
-// int	main()
-// {
-//     void *mlx = mlx_init();
-//     void *win = mlx_new_window(mlx, 640, 360, "so_long");
-
-//     // Use win in some way, e.g., drawing something in the window
-//     // This example is minimal, but demonstrates usage
-//     mlx_string_put(mlx, win, 20, 20, 0xFFFFFF, "Hello World");
-// 	mlx_key_hook(win, key_press, NULL);
-// 	mlx_hook(win, 17, 0, close_window, NULL);
-// 	mlx_loop(mlx);
-//     return (write(1, "SUCCESS", 1));
-// }
-
 void	free_map(char **map, int rows)
 {
 	int	i;
