@@ -6,12 +6,13 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 10:09:43 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/27 14:54:06 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/27 18:18:45 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
+// to comfirm the map in .ber format that match the requirement of pdf
 void	check_valid_map_name(char *file)
 {
 	int		i;
@@ -27,11 +28,13 @@ void	check_valid_map_name(char *file)
 	free(extension);
 }
 
+// to comfirm the wall seround the map
 void	check_map_wall(char **map, int row, int width)
 {
 	int	i;
 	int	j;
 
+	check_map_shape(width, row);
 	i = 0;
 	while (i < row)
 	{
@@ -49,12 +52,20 @@ void	check_map_wall(char **map, int row, int width)
 	}
 }
 
+// need to be in rectangle shape
 void	check_map_shape(int width, int row)
 {
 	if (row > width)
 		error_message("map not rectangle!");
 }
 
+/*
+C is collectible
+E is exit
+P is player
+1 is wall
+0 is floor
+*/
 void	check_valid_element(char **buffer)
 {
 	int	i;

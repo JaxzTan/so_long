@@ -6,7 +6,7 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:41:26 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/27 14:52:30 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/27 19:52:43 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	get_line_nb(char *file)
 	lines_num = 0;
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		error_message("Fail to open file\n");
+		error_message("Fail to open file");
 	str = get_next_line(fd);
 	while (str)
 	{
@@ -50,7 +50,7 @@ int	get_line_nb(char *file)
 		str = get_next_line(fd);
 	}
 	if (lines_num == 0)
-		error_message("Map file is empty\n");
+		error_message("Map file is empty");
 	close(fd);
 	return (lines_num);
 }
@@ -66,7 +66,7 @@ char	**read_map_file(char *file, int lines_num)
 		error_message("Fail to open file\n");
 	map = (char **)malloc(sizeof(char *) * (lines_num + 1));
 	if (!map)
-		error_message("Fail to allocate memory\n");
+		error_message("Fail to allocate memory");
 	i = 0;
 	while (i < lines_num)
 	{

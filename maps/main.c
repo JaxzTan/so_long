@@ -6,7 +6,7 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 15:27:02 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/27 16:20:43 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/27 18:17:29 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@
 /*
 	first we need to initialize the mlx
 	next is to create a new windows
-	for example here i put a string into the windows using mlx_string_put
-	key hook and hok is same just handle different ways to close the windows
+	key hook is same just handle different ways to close the windows
 	mlx_loop is to keep the windows open
 */
 int	main(int ac, char **av)
@@ -61,7 +60,7 @@ int	main(int ac, char **av)
 	check_valid_path(av[1], map, player);
 	map.mlx = mlx_init();
 	map.wind = mlx_new_window(map.mlx,
-			(ft_strlen(map.map[map.line_nb -1]) * 40),
+			(ft_strlen(map.map[map.line_nb - 1]) * 40),
 			(map.line_nb * 40), "so_long");
 	load_images(&map);
 	show_map(&map, 2);
@@ -112,7 +111,7 @@ int	close_window(void *param)
 }
 
 void	free_map(char **map, int rows)
-{ 	
+{
 	int	i;
 
 	i = 0;

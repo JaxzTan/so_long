@@ -6,12 +6,12 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 15:23:50 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/27 14:51:01 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/27 17:32:13 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-
+// count the number of coll, player, and exit.but only return collectible
 int	count_collectible_check(t_struct map, int lines_num)
 {
 	int	i;
@@ -39,6 +39,7 @@ int	count_collectible_check(t_struct map, int lines_num)
 	return (map.collectible);
 }
 
+// makr the player position
 t_point	mark_player(char **map)
 {
 	t_point	player;
@@ -97,6 +98,7 @@ void	flood_fill(char **map, t_point begin, int col)
 		error_message("Cannot reach exit");
 }
 
+// check is it possible to reach all collectibles and exit
 void	check_valid_path(char *file, t_struct map, t_point player)
 {
 	char	**array;
