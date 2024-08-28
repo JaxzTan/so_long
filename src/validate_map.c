@@ -6,7 +6,7 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 10:09:43 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/28 11:30:23 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/28 16:09:11 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,18 @@ void	check_map_wall(char **map, int row, int width)
 }
 
 // need to be in rectangle shape
-void	check_map_shape(t_struct *map)
+void	check_map_shape(char **map, int lines_num)
 {
-	if (map->row < 3 || map->width < 5 || map->row >= map->width)
+	int	first_line_len;
+	int	i;
+
+	i = 1;
+	first_line_len = ft_strlen(map[0]);
+	while (i < lines_num - 1)
 	{
-		free_map(map->map, map->line_nb);
-		error_message("map is not rectangle!");
+		if (ft_strlen(map[i]) != first_line_len)
+			error_message("Map is not rectangular");
+		i++;
 	}
 }
 

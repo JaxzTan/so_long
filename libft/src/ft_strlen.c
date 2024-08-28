@@ -6,13 +6,13 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 09:50:18 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/28 11:01:47 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/28 15:52:56 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-size_t	ft_strlen(const char *str)
+int	ft_strlen(const char *str)
 {
 	size_t	i;
 

@@ -6,7 +6,7 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:35:55 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/28 13:10:18 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/28 16:48:47 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct s_struct
 	int		exit;
 	int		player;
 
-	size_t	line_nb;
+	int		line_nb;
 	int		col_num;
 	int		row;
 	int		width;
@@ -65,11 +65,11 @@ void		initialize(t_struct *map);
 //checking map
 void		check_valid_map_name(char *str);
 void		check_map_wall(char **map, int row, int width);
-void		check_map_shape(t_struct *map);
+void		check_map_shape(char **map, int lines_num);
 void		check_valid_element(char **buffer);
 
 //map2
-int			count_collectible_check(t_struct map, size_t lines_num);
+int			count_collectible_check(t_struct map, int lines_num);
 t_point		mark_player(char **map);
 void		fill(char **tab, t_point cur, int *c, int *e);
 void		flood_fill(char **map, t_point begin, int col);

@@ -6,7 +6,7 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 16:18:10 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/28 11:01:56 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/28 15:53:25 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		ft_isalpha(int z);
 int		ft_isascii(int a);
 int		ft_isdigit(int i);
 int		ft_isprint(int p);
-size_t	ft_strlen(const char *str);
+int		ft_strlen(const char *str);
 int		ft_atoi(const char *str);
 void	ft_bzero(void *s, size_t n);
 char	*ft_strnstr(const char *str, const char *to_find, size_t len);

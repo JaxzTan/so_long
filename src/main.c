@@ -6,7 +6,7 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 15:27:02 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/28 12:44:05 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/28 18:09:06 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	main(int ac, char **av)
 	initialize(&map);
 	check_valid_map_name(av[1]);
 	map = map_parsing(av[1]);
-	check_map_shape(&map);
+	check_map_shape(map.map, map.line_nb);
 	check_map_wall(map.map, map.row, map.width);
 	check_valid_element(map.map);
 	player = mark_player(map.map);
@@ -66,10 +66,12 @@ int	main(int ac, char **av)
 	load_images(&map);
 	show_map(&map, 2);
 	map.moves = 0;
-	mlx_hook(map.wind, 2, 1L << 0, key_hook, &map);
+	mlx_hook(map.wind, 2, 1L, key_hook, &map);
 	mlx_hook(map.wind, 17, 1L, game_over, &map);
 	mlx_loop(map.mlx);
 }
+//1L is means keypress
+//2 is key press 17 is destroy
 
 int	key_hook(int keycode, t_struct *map)
 {

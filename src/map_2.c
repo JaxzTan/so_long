@@ -6,16 +6,16 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 15:23:50 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/28 11:03:11 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/28 16:45:32 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 // count the number of coll, player, and exit.but only return collectible
-int	count_collectible_check(t_struct map, size_t lines_num)
+int	count_collectible_check(t_struct map, int lines_num)
 {
-	size_t	i;
-	size_t	j;
+	int	i;
+	int	j;
 
 	i = -1;
 	map.collectible = 0;
