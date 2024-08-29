@@ -6,7 +6,7 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:37:44 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/27 14:53:38 by chtan            ###   ########.fr       */
+/*   Updated: 2024/08/29 16:46:24 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void	error_message(char *str)
 {
-	ft_putstr_fd("Error : ", 2);
-	ft_printf("%s\n", str);
+	// (void)str;
+	ft_putstr_fd("Error", 2);
+	ft_printf(" : %s\n", str);
 	exit(1);
 }
 
