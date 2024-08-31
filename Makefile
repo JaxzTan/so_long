@@ -66,3 +66,4 @@ re: fclean all
 
 norm: 
 	norminette
+	clear
