@@ -6,7 +6,7 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 10:09:43 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/29 17:05:59 by chtan            ###   ########.fr       */
+/*   Updated: 2024/09/01 12:32:48 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,14 @@ void	check_map_shape(char **map, int lines_num)
 
 	i = 1;
 	first_line_len = ft_strlen(map[0]);
-	while (i < lines_num - 1)
+	while (i < lines_num -1)
 	{
 		if (ft_strlen(map[i]) != first_line_len)
 			error_message("Map is not rectangular");
 		i++;
 	}
+	if ((ft_strlen(map[i]) + 1) != first_line_len)
+		error_message("Map is not rectangular");
 }
 
 /*
@@ -86,7 +88,8 @@ void	check_valid_element(char **buffer)
 		while (buffer[i][j])
 		{
 			if (buffer[i][j] != '1' && buffer[i][j] != '0' &&
-			buffer[i][j] != 'P' && buffer[i][j] != 'C' && buffer[i][j] != 'E')
+			buffer[i][j] != 'P' && buffer[i][j] != 'C' && buffer[i][j] != 'E'
+				&& buffer[i][j] != '\n')
 				error_message("invalid char in map!");
 			j++;
 		}

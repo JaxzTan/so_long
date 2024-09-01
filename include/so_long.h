@@ -6,7 +6,7 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:35:55 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/28 16:48:47 by chtan            ###   ########.fr       */
+/*   Updated: 2024/09/01 12:30:46 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,4 @@ void		move_upside(t_struct *map, t_point *p);
 void		move_rightside(t_struct *map, t_point *p);
 void		move_downside(t_struct *map, t_point *p);
 
-// void print_2d(char **map);
 #endif

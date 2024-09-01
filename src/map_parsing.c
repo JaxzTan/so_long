@@ -6,13 +6,15 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:41:26 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/28 13:08:46 by chtan            ###   ########.fr       */
+/*   Updated: 2024/09/01 12:31:42 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-//the main function in this file that will fill the 2d array, row, and col to
-//	struct.
+/*
+	the main function in this file that will fill the 2d array, row, and col to
+	struct.
+*/
 t_struct	map_parsing(char *files)
 {
 	t_struct	map;
@@ -83,20 +85,21 @@ char	**insert_2d(char **split, int width, int row, t_struct map)
 	int		i;
 	int		j;
 
+	(void)width;
 	map.map = (char **)malloc(sizeof(char *) * (row + 1));
 	if (!map.map)
 		error_message("Memory allocation failed");
 	i = 0;
 	while (i < row)
 	{
-		map.map[i] = (char *)malloc(sizeof(char) * (width + 1));
+		map.map[i] = (char *)malloc(sizeof(char) * (ft_strlen(split[i]) + 1));
 		if (!map.map[i])
 		{
 			free_2d(map.map);
 			error_message("	Memory allocation failed");
 		}
 		j = -1;
-		while (++j < width)
+		while (++j < ft_strlen(split[i]))
 			map.map[i][j] = split[i][j];
 		map.map[i][j] = '\0';
 		i++;
