@@ -1,7 +1,7 @@
 NAME = libft.a
 
 COMPILER = cc
-CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR)
+CFLAGS = -Wall -Wextra -Werror -fPIC -I$(INC_DIR) 
 
 SRC_DIR = src
 SRCB_DIR = srcb
