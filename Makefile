@@ -33,6 +33,7 @@ clean:
 	make clean -C libft
 	make clean -C $(MINILIBX)
 	rm -rf $(OBJ_SRC)
+	rm -rf obj
 	rm -f libft.a
 
 fclean : clean
