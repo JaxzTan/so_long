@@ -6,7 +6,7 @@
 /*   By: chtan <chtan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 13:49:20 by chtan             #+#    #+#             */
-/*   Updated: 2024/08/27 14:38:26 by chtan            ###   ########.fr       */
+/*   Updated: 2024/11/20 15:07:44 by chtan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,13 @@ void	show_map(t_struct *map, int keycode)
 
 void	put_player(t_struct *map, int keycode, int i, int j)
 {
-	if (keycode == 13)
+	if (keycode == 25)
 		mlx_put_image_to_window(map->mlx, map->wind, map->up, j * 40, i * 40);
-	if (keycode == 0)
+	if (keycode == 38)
 		mlx_put_image_to_window(map->mlx, map->wind, map->lef, j * 40, i * 40);
-	if (keycode == 1)
+	if (keycode == 39)
 		mlx_put_image_to_window(map->mlx, map->wind, map->dow, j * 40, i * 40);
-	if (keycode == 2)
+	if (keycode == 40)
 		mlx_put_image_to_window(map->mlx, map->wind, map->rig, j * 40, i * 40);
 }
 
